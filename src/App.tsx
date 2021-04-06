@@ -1,6 +1,8 @@
 // import TiposBasicos from './typescript/TiposBasicos';
 // import ObjetosLiterales from "./typescript/ObjetosLiterales";
-import Funciones from "./typescript/Funciones";
+// import Funciones from "./typescript/Funciones";
+
+import Counter from "./components/Counter"
 
 // import TiposBasicos from "./typescript/TiposBasicos"
 const App = () => {
@@ -9,8 +11,9 @@ const App = () => {
       <h1>Introducción a TypeScript-React</h1>
       <hr />
       {/* <TiposBasicos/> */}
-      {/*<ObjetosLiterales/>*/}
-      <Funciones />
+      {/* <ObjetosLiterales/> */}
+      {/* <Funciones /> */}
+      <Counter/>
     </div>
   );
 };
