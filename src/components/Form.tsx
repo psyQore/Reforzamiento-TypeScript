@@ -1,19 +1,10 @@
-import { useState } from "react";
+import { useForm } from "../Hooks/useForm";
 
 const Form = () => {
-  const [form, setForm] = useState({
+  const { form, onChange, email, password } = useForm({
     email: "test@test.cl",
     password: "123456",
   });
-
-  const onChange = (value: string, field: string) => {
-    setForm({
-      ...form,
-      [field]: value,
-    });
-  };
-
-  const { email, password } = form;
 
   return (
     <>
