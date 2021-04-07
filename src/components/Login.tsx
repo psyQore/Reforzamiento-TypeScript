@@ -16,10 +16,13 @@ const initialState: AuthState = {
   name: "",
 };
 
-// Action
-type AuthAction = {
-  type: "logout";
+type LoginPayload = {
+  username: string;
+  name: string;
 };
+
+// Action
+type AuthAction = { type: "logout" } | { type: "login"; payload: LoginPayload };
 
 // Reducer
 const authReducer = (state: AuthState, action: AuthAction): AuthState => {
@@ -31,13 +34,24 @@ const authReducer = (state: AuthState, action: AuthAction): AuthState => {
         name: "",
         username: "",
       };
+    case "login":
+      const { name, username } = action.payload;
+      return {
+        validate: false,
+        token: "abc123",
+        name,
+        username,
+      };
     default:
       return state;
   }
 };
 
 const Login = () => {
-  const [{ validate }, dispatch] = useReducer(authReducer, initialState);
+  const [{ validate, token, name }, dispatch] = useReducer(
+    authReducer,
+    initialState
+  );
 
   useEffect(() => {
     setTimeout(() => {
@@ -45,10 +59,25 @@ const Login = () => {
     }, 1500);
   }, []);
 
+  const login = () => {
+    dispatch({
+      type: "login",
+      payload: {
+        name: "Juan",
+        username: "psyQu",
+      },
+    });
+  };
+
+  const logout = () => {
+    dispatch({
+      type: "logout"
+    });
+  };
+
   if (validate) {
     return (
       <>
-        <h3>Login</h3>
         <div className="alert alert-info">Validando..</div>
       </>
     );
@@ -56,11 +85,20 @@ const Login = () => {
 
   return (
     <>
-      <div className="alert alert-danger">No Autenticado</div>
-      <div className="alert alert-success">Autenticado</div>
-      <button className="btn btn-primary">Login</button>
-      &nbsp;
-      <button className="btn btn-danger">Logout</button>
+      <h3>Login</h3>
+      {token ? (
+        <div className="alert alert-success">Autenticado Como {name}</div>
+      ) : (
+        <div className="alert alert-danger">No Autenticado</div>
+      )}
+
+      {token ? (
+        <button className="btn btn-danger" onClick={ logout }>Logout</button>
+      ) : (
+        <button className="btn btn-primary" onClick={login}>
+          Login
+        </button>
+      )}
     </>
   );
 };
