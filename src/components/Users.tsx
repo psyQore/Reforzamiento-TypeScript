@@ -1,13 +1,17 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { reqResApi } from "../api/reqRes";
+import { ReqResList, User } from "../interfaces/reqRes";
 
 const Users = () => {
+
+  const [users, setUsers] = useState<User>([]);
+
   useEffect(() => {
     // Llamado de API
     reqResApi
-      .get("/users")
+      .get<ReqResList>("/users")
       .then((resp) => {
-        console.log(resp.data.data);
+        console.log(resp.data.data[0].first_name);
       })
       .catch((err) => console.log(err));
   }, []);
