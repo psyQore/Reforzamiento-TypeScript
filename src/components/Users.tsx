@@ -4,7 +4,7 @@ import { ReqResList, User } from "../interfaces/reqRes";
 
 const Users = () => {
 
-  const [users, setUsers] = useState<User>([]);
+  const [users, setUsers] = useState<User[]>([]);
 
   useEffect(() => {
     // Llamado de API
