@@ -4,8 +4,9 @@
 // import Counter from "./components/Counter"
 // import CounterWithHook from "./components/CounterWithHook";
 // import Login from "./components/Login"
+// import Users from "./components/Users"
 
-import Users from "./components/Users"
+import Form from "./components/Form"
 
 // import TiposBasicos from "./typescript/TiposBasicos"
 const App = () => {
@@ -19,7 +20,8 @@ const App = () => {
       {/*<Counter/>*/}
       {/* <CounterWithHook /> */}
       {/* <Login/> */}
-      <Users/>
+      {/* <Users/> */}
+      <Form/>
     </div>
   );
 };
